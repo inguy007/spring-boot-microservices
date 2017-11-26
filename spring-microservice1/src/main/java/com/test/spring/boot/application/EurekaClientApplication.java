@@ -8,21 +8,23 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 import org.springframework.core.env.Environment;
 
-@EnableEurekaServer
-@SpringBootApplication
-public class EurekaServerApplication {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(EurekaServerApplication.class);
+@SpringBootApplication
+@EnableDiscoveryClient
+public class EurekaClientApplication {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(EurekaClientApplication.class);
 
 	@Autowired
 	private Environment env;
 
 	public static void main(String[] args) throws UnknownHostException {
 		LOGGER.info("Starting spring eureka server");
-		SpringApplication app = new SpringApplication(EurekaServerApplication.class);
+		SpringApplication app = new SpringApplication(EurekaClientApplication.class);
 		Environment env = app.run(args).getEnvironment();
 		String protocol = "http";
 		if (env.getProperty("server.ssl.key-store") != null) {

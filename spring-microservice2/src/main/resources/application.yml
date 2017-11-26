@@ -1,12 +1,14 @@
 server:
-    port: 8761
+    port: 8081
 
 spring:
     application:
-        name: EurekaServerApp
+        name: EurekaClientApplication2
 
-eurekaclient.register-with-eureka: false
-eureka.client.fetch-registry: false
+eurekaclient.register-with-eureka: true
+eureka.client.fetch-registry: true
+
+eureka.client.serviceUrl.defaultZone: http://localhost:8761/eureka/
 
 management.security.enabled: false
 #logging.level.com.netflix.eureka=OFF
